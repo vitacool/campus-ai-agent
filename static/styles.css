@@ -75,6 +75,18 @@ h2 {
   font-weight: 700;
 }
 
+.status-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.neutral {
+  background: #eef2f8;
+  color: #4a5870;
+}
+
 .messages {
   display: flex;
   flex: 1;
@@ -113,6 +125,57 @@ h2 {
   font-size: 12px;
 }
 
+.source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.source-list span {
+  border: 1px solid #cad8eb;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #3c4c65;
+  padding: 5px 9px;
+  font-size: 12px;
+}
+
+.feedback {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  color: #5b6678;
+  font-size: 12px;
+}
+
+.feedback button,
+.quick-actions button {
+  border: 1px solid #cbd7e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #29364c;
+  cursor: pointer;
+  font: inherit;
+}
+
+.feedback button {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 24px 18px;
+}
+
+.quick-actions button {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
 .composer {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 92px;
@@ -145,6 +208,29 @@ h2 {
 .side-panel {
   align-self: start;
   padding: 22px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.metrics div {
+  border: 1px solid #e2e9f3;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.metrics strong {
+  display: block;
+  font-size: 20px;
+}
+
+.metrics span {
+  color: #68758a;
+  font-size: 12px;
 }
 
 .knowledge-list {

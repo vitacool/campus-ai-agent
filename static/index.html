@@ -14,13 +14,23 @@
             <p class="eyebrow">Campus AI Agent</p>
             <h1>校园智能问答 Agent</h1>
           </div>
-          <span id="status" class="status">本地检索模式</span>
+          <div class="status-group">
+            <span id="status" class="status">本地检索模式</span>
+            <span id="stats" class="status neutral">0 次问答</span>
+          </div>
         </header>
 
         <div id="messages" class="messages">
           <article class="message assistant">
             <p>你好，我可以查询校园通知、部门电话、宿舍报修、图书馆时间和选课流程。</p>
           </article>
+        </div>
+
+        <div class="quick-actions" aria-label="快捷问题">
+          <button type="button" data-question="AI讲座怎么报名？">AI讲座报名</button>
+          <button type="button" data-question="学生事务中心电话是多少？">部门电话</button>
+          <button type="button" data-question="宿舍网络坏了怎么办？">宿舍报修</button>
+          <button type="button" data-question="选课流程是什么？">选课流程</button>
         </div>
 
         <form id="chat-form" class="composer">
@@ -37,6 +47,16 @@
 
       <aside class="side-panel">
         <h2>知识库</h2>
+        <div class="metrics">
+          <div>
+            <strong id="knowledge-count">0</strong>
+            <span>知识条目</span>
+          </div>
+          <div>
+            <strong id="avg-latency">0ms</strong>
+            <span>平均耗时</span>
+          </div>
+        </div>
         <div id="knowledge" class="knowledge-list"></div>
       </aside>
     </main>

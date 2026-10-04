@@ -1,0 +1,23 @@
+### Health check
+GET http://127.0.0.1:8000/api/health
+
+### Ask the campus agent
+POST http://127.0.0.1:8000/api/chat
+Content-Type: application/json
+
+{
+  "question": "AI讲座怎么报名？"
+}
+
+### Send feedback
+POST http://127.0.0.1:8000/api/feedback
+Content-Type: application/json
+
+{
+  "chat_id": 1,
+  "rating": "up",
+  "comment": "回答清楚"
+}
+
+### Recent logs
+GET http://127.0.0.1:8000/api/chat/logs?limit=5

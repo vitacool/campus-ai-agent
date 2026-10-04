@@ -20,6 +20,8 @@ class KnowledgeAgentTest(unittest.TestCase):
         results = self.agent.retrieve("AI讲座怎么报名")
         titles = [item["title"] for item in results]
         self.assertIn("AI应用开发讲座", titles)
+        self.assertIn("score", results[0])
+        self.assertIn("matched_terms", results[0])
 
     def test_routes_repair_tool(self) -> None:
         self.assertEqual(self.agent.pick_tool("宿舍网络坏了怎么办"), "repair_helper")
@@ -29,6 +31,25 @@ class KnowledgeAgentTest(unittest.TestCase):
         self.assertEqual(result["tool"], "department_lookup")
         self.assertTrue(result["sources"])
         self.assertIn("学生事务中心", result["answer"])
+        self.assertGreaterEqual(result["latency_ms"], 0)
+        self.assertIsInstance(result["id"], int)
+
+    def test_records_feedback_and_stats(self) -> None:
+        answer = self.agent.ask("宿舍网络坏了怎么办")
+        feedback = self.agent.add_feedback(answer["id"], "up", "answer is useful")
+        stats = self.agent.stats()
+
+        self.assertEqual(feedback["chat_id"], answer["id"])
+        self.assertEqual(stats["chat_count"], 1)
+        self.assertEqual(stats["feedback_count"], 1)
+        self.assertEqual(stats["knowledge_count"], len(self.agent.knowledge))
+
+    def test_recent_logs_include_source_ids(self) -> None:
+        answer = self.agent.ask("选课流程是什么")
+        logs = self.agent.recent_logs(limit=5)
+
+        self.assertEqual(logs[0]["id"], answer["id"])
+        self.assertIsInstance(logs[0]["source_ids"], list)
 
 
 if __name__ == "__main__":
