@@ -31,7 +31,8 @@ class KnowledgeAgentTest(unittest.TestCase):
         self.assertEqual(result["tool"], "department_lookup")
         self.assertTrue(result["sources"])
         self.assertIn("学生事务中心", result["answer"])
-        self.assertGreaterEqual(result["latency_ms"], 0)
+        self.assertEqual(["学生事务中心"], [source["title"] for source in result["sources"]])
+        self.assertGreaterEqual(result["latency_ms"], 1)
         self.assertIsInstance(result["id"], int)
 
     def test_records_feedback_and_stats(self) -> None:

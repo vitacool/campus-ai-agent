@@ -109,7 +109,13 @@ class KnowledgeAgent:
                 scored.append((score, enriched))
 
         scored.sort(key=lambda row: row[0], reverse=True)
-        return [item for _, item in scored[:limit]]
+        if not scored:
+            return []
+
+        top_score = scored[0][0]
+        min_score = max(0.75, top_score * 0.18)
+        filtered = [(score, item) for score, item in scored if score >= min_score]
+        return [item for _, item in filtered[:limit]]
 
     def _score_item(
         self,
@@ -175,7 +181,7 @@ class KnowledgeAgent:
         sources = self.retrieve(question)
         llm_answer = call_llm(question, sources, tool)
         answer = llm_answer or self.fallback_answer(sources, tool)
-        latency_ms = int((time.perf_counter() - started_at) * 1000)
+        latency_ms = max(1, math.ceil((time.perf_counter() - started_at) * 1000))
         source_ids = [source["id"] for source in sources]
 
         with closing(sqlite3.connect(self.db_file)) as conn:
@@ -373,6 +379,7 @@ class AppHandler(BaseHTTPRequestHandler):
         data = path.read_bytes()
         self.send_response(200)
         self.send_header("Content-Type", content_type)
+        self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)
@@ -381,6 +388,7 @@ class AppHandler(BaseHTTPRequestHandler):
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)
