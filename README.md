@@ -1,6 +1,6 @@
 # 校园智能问答 Agent
 
-一个面向校园服务场景的 AI 应用项目，覆盖 **RAG 检索、Agent 工具路由、RESTful API、SQLite 持久化、用户反馈闭环和可交互前端演示**。项目默认零依赖运行；配置 `OPENAI_API_KEY` 后，可自动接入大模型生成更自然的回答。
+一个面向校园服务场景的 AI 应用项目，覆盖 **FastAPI、混合向量检索、Agent 工具路由、RESTful API、SQLite 持久化、后台知识库管理、用户反馈闭环和可交互前端演示**。配置 `OPENAI_API_KEY` 后，可自动接入大模型生成更自然的回答。
 
 ## 项目定位
 
@@ -8,28 +8,31 @@
 
 ## 核心能力
 
-- **轻量 RAG 检索**：基于中英文 token、中文短语和关键词加权召回校园知识条目。
+- **混合 RAG 检索**：支持 OpenAI Embedding、sentence-transformers、本地 hashing embedding，并在可用时使用 FAISS，否则回退 NumPy 余弦检索。
 - **Agent 工具路由**：根据问题意图选择 `notice_search`、`department_lookup`、`repair_helper`、`academic_helper` 或通用问答。
 - **可解释来源**：接口返回来源、得分和命中词，前端展示回答依据，降低“黑盒回答”感。
 - **大模型增强**：支持 OpenAI 兼容接口；无 API Key 时自动降级为本地检索回答。
 - **数据闭环**：SQLite 记录问答日志、来源 ID、耗时和用户反馈，支持后续统计与优化。
+- **后台管理**：提供 `/admin` 页面，可新增、编辑、删除知识库条目，并自动重建向量索引。
 - **工程化展示**：提供 API 文档、架构说明、单元测试和 GitHub Actions CI。
 
 ## 技术栈
 
-- Python 标准库 HTTP Server
+- FastAPI / Uvicorn
 - SQLite
+- NumPy vector retrieval
 - HTML / CSS / JavaScript
 - RESTful API
-- Optional: OpenAI-compatible LLM API
+- Optional: OpenAI Embedding, sentence-transformers, FAISS
 
 ## 项目结构
 
 ```text
 campus-ai-agent
 ├── app.py                    # 后端服务、Agent、检索、数据持久化
+├── agent.py                  # Agent、混合检索、知识库 CRUD
 ├── data/knowledge.json       # 校园知识库
-├── static/                   # 前端演示页面
+├── static/                   # 问答前端和后台管理页面
 ├── tests/test_agent.py       # 单元测试
 ├── docs/api.md               # API 文档
 ├── docs/architecture.md      # 架构说明
@@ -41,6 +44,7 @@ campus-ai-agent
 
 ```powershell
 cd campus-ai-agent
+pip install -r requirements.txt
 python app.py
 ```
 
@@ -48,6 +52,12 @@ python app.py
 
 ```text
 http://127.0.0.1:8000
+```
+
+后台管理页面：
+
+```text
+http://127.0.0.1:8000/admin
 ```
 
 ## 接入真实大模型
@@ -61,6 +71,20 @@ $env:OPENAI_MODEL="gpt-4o-mini"
 
 ```powershell
 $env:OPENAI_BASE_URL="https://your-provider.example.com/v1/chat/completions"
+```
+
+## 向量检索配置
+
+默认 `EMBEDDING_PROVIDER=auto`：
+
+1. 有 `OPENAI_API_KEY` 时优先使用 OpenAI Embedding。
+2. 已安装 `sentence-transformers` 时使用本地语义模型。
+3. 都不可用时使用本地 hashing embedding，保证项目仍可运行。
+
+安装更强的本地向量检索能力：
+
+```powershell
+pip install -r requirements-optional.txt
 ```
 
 ## 常用接口
@@ -96,6 +120,6 @@ python -m unittest discover -s tests
 
 - 将知识库检索升级为向量检索。
 - 将 SQLite 替换为 MySQL，适配真实业务数据。
-- 增加后台知识库管理和导入功能。
+- 增加知识库批量导入功能。
 - 接入校园统一认证和工单系统。
-- 使用 FastAPI 重构服务层并生成 OpenAPI 文档。
+- 增加鉴权和管理员登录。

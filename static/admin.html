@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>知识库管理 - Campus AI Agent</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Knowledge Admin</p>
+          <h1>知识库管理</h1>
+        </div>
+        <a class="text-link" href="/">返回问答</a>
+      </header>
+
+      <section class="admin-grid">
+        <form id="knowledge-form" class="admin-panel">
+          <h2>编辑条目</h2>
+          <input id="item-id" placeholder="ID，例如 notice-ai-lecture" required />
+          <input id="item-title" placeholder="标题" required />
+          <input id="item-category" placeholder="分类" required />
+          <textarea id="item-content" placeholder="内容" rows="6" required></textarea>
+          <input id="item-keywords" placeholder="关键词，用逗号分隔" />
+          <div class="admin-actions">
+            <button type="submit">保存</button>
+            <button type="button" id="reset-form">清空</button>
+          </div>
+          <p id="admin-message" class="meta"></p>
+        </form>
+
+        <section class="admin-panel">
+          <h2>知识库条目</h2>
+          <div id="admin-list" class="admin-list"></div>
+        </section>
+      </section>
+    </main>
+    <script src="/static/admin.js"></script>
+  </body>
+</html>

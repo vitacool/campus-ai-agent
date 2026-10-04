@@ -1,15 +1,19 @@
 import tempfile
 import unittest
+import json
 from pathlib import Path
 
-from app import KnowledgeAgent
+from agent import KnowledgeAgent
 
 
 class KnowledgeAgentTest(unittest.TestCase):
     def setUp(self) -> None:
         self.temp_dir = tempfile.TemporaryDirectory()
+        self.data_file = Path(self.temp_dir.name) / "knowledge.json"
+        source_data = Path(__file__).resolve().parents[1] / "data" / "knowledge.json"
+        self.data_file.write_text(source_data.read_text(encoding="utf-8"), encoding="utf-8")
         self.agent = KnowledgeAgent(
-            data_file=Path(__file__).resolve().parents[1] / "data" / "knowledge.json",
+            data_file=self.data_file,
             db_file=Path(self.temp_dir.name) / "test.db",
         )
 
@@ -22,6 +26,7 @@ class KnowledgeAgentTest(unittest.TestCase):
         self.assertIn("AI应用开发讲座", titles)
         self.assertIn("score", results[0])
         self.assertIn("matched_terms", results[0])
+        self.assertIn("retrieval_mode", results[0])
 
     def test_routes_repair_tool(self) -> None:
         self.assertEqual(self.agent.pick_tool("宿舍网络坏了怎么办"), "repair_helper")
@@ -51,6 +56,30 @@ class KnowledgeAgentTest(unittest.TestCase):
 
         self.assertEqual(logs[0]["id"], answer["id"])
         self.assertIsInstance(logs[0]["source_ids"], list)
+
+    def test_knowledge_crud_rebuilds_index(self) -> None:
+        created = self.agent.create_knowledge(
+            {
+                "id": "canteen-hours",
+                "category": "校园服务",
+                "title": "食堂开放时间",
+                "content": "第一食堂每天7:00-20:00开放。",
+                "keywords": ["食堂", "开放", "时间"],
+            }
+        )
+        self.assertEqual(created["id"], "canteen-hours")
+        self.assertIn("食堂开放时间", [item["title"] for item in self.agent.retrieve("食堂几点开")])
+
+        updated = self.agent.update_knowledge(
+            "canteen-hours",
+            {"content": "第一食堂每天7:00-21:00开放。", "keywords": ["食堂", "夜宵"]},
+        )
+        self.assertIn("21:00", updated["content"])
+
+        deleted = self.agent.delete_knowledge("canteen-hours")
+        self.assertEqual(deleted["deleted"], "true")
+        persisted = json.loads(self.data_file.read_text(encoding="utf-8"))
+        self.assertNotIn("canteen-hours", [item["id"] for item in persisted])
 
 
 if __name__ == "__main__":

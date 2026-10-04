@@ -101,10 +101,13 @@ async function ask(question) {
 
   statusBadge.textContent = data.used_model ? "大模型增强模式" : "本地检索模式";
   const sourceNames = data.sources.map((source) => source.title).join("、") || "无匹配来源";
+  const retrieval = data.retrieval
+    ? ` | 检索：${data.retrieval.embedding_provider}/${data.retrieval.index_backend}`
+    : "";
   appendMessage(
     "assistant",
     data.answer,
-    `工具：${data.tool} | 来源：${sourceNames} | 耗时：${data.latency_ms}ms`,
+    `工具：${data.tool} | 来源：${sourceNames} | 耗时：${data.latency_ms}ms${retrieval}`,
     data.sources,
     data.id,
   );

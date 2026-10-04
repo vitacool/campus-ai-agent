@@ -11,12 +11,108 @@ body {
     Inter, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
 }
 
+.text-link {
+  color: #2357c6;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 .shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
   gap: 24px;
   width: min(1120px, calc(100vw - 32px));
   margin: 32px auto;
+}
+
+.admin-shell {
+  width: min(1160px, calc(100vw - 32px));
+  margin: 32px auto;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  gap: 24px;
+}
+
+.admin-panel {
+  background: #ffffff;
+  border: 1px solid #dfe7f1;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(28, 45, 74, 0.08);
+  padding: 22px;
+}
+
+.admin-panel input,
+.admin-panel textarea {
+  width: 100%;
+  border: 1px solid #cbd7e6;
+  border-radius: 8px;
+  font: inherit;
+  margin-bottom: 12px;
+  padding: 11px 12px;
+}
+
+.admin-panel textarea {
+  resize: vertical;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-actions button {
+  border: 1px solid #cbd7e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #29364c;
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 12px;
+}
+
+.admin-actions button:first-child {
+  background: #18202f;
+  color: #ffffff;
+}
+
+.admin-list {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-item {
+  border: 1px solid #e2e9f3;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.admin-item strong,
+.admin-item span {
+  display: block;
+}
+
+.admin-item span {
+  color: #68758a;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.admin-item p {
+  color: #29364c;
+  line-height: 1.6;
+  margin: 12px 0;
 }
 
 .chat-panel,
@@ -258,6 +354,10 @@ h2 {
   .shell {
     grid-template-columns: 1fr;
     margin: 16px auto;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
   }
 
   .chat-panel {

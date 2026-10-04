@@ -29,6 +29,30 @@ http://127.0.0.1:8000
 
 返回当前校园知识库条目。
 
+## POST /api/knowledge
+
+新增知识库条目，并自动重建向量索引。
+
+请求：
+
+```json
+{
+  "id": "canteen-hours",
+  "category": "校园服务",
+  "title": "食堂开放时间",
+  "content": "第一食堂每天7:00-21:00开放。",
+  "keywords": ["食堂", "开放", "时间"]
+}
+```
+
+## PUT /api/knowledge/{item_id}
+
+更新知识库条目，并自动重建向量索引。
+
+## DELETE /api/knowledge/{item_id}
+
+删除知识库条目，并自动重建向量索引。
+
 ## POST /api/chat
 
 提交用户问题，返回 Agent 回答、工具路由、检索来源和耗时。
@@ -50,13 +74,18 @@ http://127.0.0.1:8000
   "tool": "notice_search",
   "used_model": false,
   "latency_ms": 3,
+  "retrieval": {
+    "embedding_provider": "hashing",
+    "index_backend": "numpy"
+  },
   "sources": [
     {
       "id": "notice-ai-lecture",
       "title": "AI应用开发讲座",
       "category": "校园活动",
       "score": 5.108,
-      "matched_terms": ["AI", "讲座", "报名"]
+      "matched_terms": ["AI", "讲座", "报名"],
+      "retrieval_mode": "hybrid"
     }
   ]
 }

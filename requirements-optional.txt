@@ -1,0 +1,7 @@
+# Optional semantic embedding and vector index backends.
+# Install these when you want a stronger local vector retrieval stack:
+#
+#   pip install -r requirements-optional.txt
+#
+sentence-transformers>=3.0
+faiss-cpu>=1.8

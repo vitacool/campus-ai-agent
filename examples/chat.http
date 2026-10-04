@@ -21,3 +21,15 @@ Content-Type: application/json
 
 ### Recent logs
 GET http://127.0.0.1:8000/api/chat/logs?limit=5
+
+### Create knowledge item
+POST http://127.0.0.1:8000/api/knowledge
+Content-Type: application/json
+
+{
+  "id": "canteen-hours",
+  "category": "校园服务",
+  "title": "食堂开放时间",
+  "content": "第一食堂每天7:00-21:00开放。",
+  "keywords": ["食堂", "开放", "时间"]
+}
