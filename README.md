@@ -20,6 +20,7 @@
 
 - **混合 RAG 检索**：支持 OpenAI Embedding、sentence-transformers、本地 hashing embedding，并在可用时使用 FAISS，否则回退 NumPy 余弦检索。
 - **Agent 工具路由**：根据问题意图选择 `notice_search`、`department_lookup`、`repair_helper`、`academic_helper` 或通用问答。
+- **通知分类联动**：可接入 [campus-notice-classifier](https://github.com/vitacool/campus-notice-classifier) 通知分类服务，先识别通知类型，再进行 Agent 工具路由。
 - **可解释来源**：接口返回来源、得分和命中词，前端展示回答依据，降低“黑盒回答”感。
 - **大模型增强**：支持 OpenAI 兼容接口；无 API Key 时自动降级为本地检索回答。
 - **数据闭环**：SQLite 记录问答日志、来源 ID、耗时和用户反馈，支持后续统计与优化。
@@ -149,6 +150,7 @@ python -m unittest discover -s tests
 
 - 将 SQLite 替换为 MySQL，适配真实业务数据。
 - 增加知识库批量导入功能。
+- 接入校园通知分类服务，作为 Agent 前置意图识别和工具路由模块。
 - 接入校园统一认证和工单系统。
 - 增加鉴权和管理员登录。
 - 持久化 embedding 缓存，减少启动时索引重建成本。
