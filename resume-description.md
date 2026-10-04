@@ -6,6 +6,18 @@
 
 项目地址：https://github.com/vitacool/campus-ai-agent
 
+## 简历精简版
+
+校园智能问答 Agent | Python、FastAPI、SQLite、NumPy、RAG、向量检索、大模型 API
+
+1. 面向校园信息分散、办事流程查询成本高的问题，设计并实现 AI Agent 问答系统，支持活动通知、部门电话、宿舍报修、教务流程等高频校园服务查询。
+2. 基于 FastAPI 实现 RESTful API，设计 Agent 工具路由，根据问题意图分发到通知查询、部门查询、报修助手、教务助手等工具。
+3. 实现混合 RAG 检索，支持 OpenAI Embedding、sentence-transformers 和本地 hashing embedding；有 FAISS 时使用 FAISS，否则用 NumPy 余弦检索 fallback。
+4. 提供后台知识库管理页面，支持知识条目新增、编辑、删除，并在变更后自动重建向量索引，使系统具备可维护性。
+5. 使用 SQLite 记录问答日志、来源 ID、接口耗时和用户反馈，提供统计接口、API 文档、架构文档、单元测试和 GitHub Actions CI。
+
+## 完整描述
+
 1. 面向校园通知分散、办事流程查询成本高的问题，设计并实现校园智能问答 Agent，支持活动通知、部门电话、宿舍报修、图书馆时间和教务流程查询。
 2. 使用 FastAPI 实现 RESTful API 和 Agent 核心逻辑，基于本地知识库完成混合 RAG 检索，并根据问题意图路由到通知查询、部门查询、报修助手、教务助手等工具。
 3. 设计向量检索模块，支持 OpenAI Embedding、sentence-transformers 和本地 hashing embedding；有 FAISS 时使用 FAISS 索引，否则使用 NumPy 余弦检索作为 fallback。

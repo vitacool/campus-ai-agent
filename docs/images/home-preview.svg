@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#f4f7fb"/>
+  <rect x="60" y="50" width="1080" height="620" rx="10" fill="#ffffff" stroke="#dfe7f1"/>
+  <rect x="60" y="50" width="1080" height="92" rx="10" fill="#ffffff"/>
+  <line x1="60" y1="142" x2="1140" y2="142" stroke="#e5edf6"/>
+  <text x="96" y="88" font-family="Microsoft YaHei, Arial" font-size="16" font-weight="700" fill="#2f73d6">Campus AI Agent</text>
+  <text x="96" y="122" font-family="Microsoft YaHei, Arial" font-size="34" font-weight="800" fill="#18202f">校园智能问答 Agent</text>
+  <rect x="838" y="84" width="108" height="32" rx="16" fill="#e7f5ee"/>
+  <text x="858" y="106" font-family="Microsoft YaHei, Arial" font-size="14" font-weight="700" fill="#18784d">本地检索模式</text>
+  <rect x="958" y="84" width="86" height="32" rx="16" fill="#eef2f8"/>
+  <text x="980" y="106" font-family="Microsoft YaHei, Arial" font-size="14" font-weight="700" fill="#4a5870">14 次问答</text>
+  <text x="1056" y="106" font-family="Microsoft YaHei, Arial" font-size="15" font-weight="700" fill="#2357c6">后台管理</text>
+
+  <rect x="96" y="178" width="610" height="64" rx="8" fill="#eef4fb"/>
+  <text x="122" y="216" font-family="Microsoft YaHei, Arial" font-size="18" fill="#18202f">你好，我可以查询校园通知、部门电话、宿舍报修、图书馆时间和选课流程。</text>
+
+  <rect x="424" y="278" width="282" height="52" rx="8" fill="#2357c6"/>
+  <text x="455" y="311" font-family="Microsoft YaHei, Arial" font-size="18" fill="#ffffff">学生事务中心电话是多少？</text>
+
+  <rect x="96" y="362" width="704" height="170" rx="8" fill="#eef4fb"/>
+  <text x="122" y="400" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="700" fill="#18202f">根据校园知识库，我为你整理如下：</text>
+  <text x="122" y="438" font-family="Microsoft YaHei, Arial" font-size="17" fill="#29364c">1. 学生事务中心位于行政楼一楼，工作时间为工作日 9:00-12:00、</text>
+  <text x="122" y="468" font-family="Microsoft YaHei, Arial" font-size="17" fill="#29364c">14:00-17:30，联系电话为 0755-88886666。</text>
+  <rect x="122" y="492" width="184" height="28" rx="14" fill="#ffffff" stroke="#cad8eb"/>
+  <text x="139" y="512" font-family="Microsoft YaHei, Arial" font-size="13" fill="#3c4c65">学生事务中心 · 7.328</text>
+  <text x="322" y="512" font-family="Microsoft YaHei, Arial" font-size="13" fill="#5b6678">工具：department_lookup | 检索：hashing/numpy</text>
+
+  <rect x="96" y="574" width="142" height="36" rx="8" fill="#ffffff" stroke="#cbd7e6"/>
+  <text x="127" y="598" font-family="Microsoft YaHei, Arial" font-size="15" fill="#29364c">AI讲座报名</text>
+  <rect x="250" y="574" width="116" height="36" rx="8" fill="#ffffff" stroke="#cbd7e6"/>
+  <text x="282" y="598" font-family="Microsoft YaHei, Arial" font-size="15" fill="#29364c">部门电话</text>
+  <rect x="378" y="574" width="116" height="36" rx="8" fill="#ffffff" stroke="#cbd7e6"/>
+  <text x="410" y="598" font-family="Microsoft YaHei, Arial" font-size="15" fill="#29364c">宿舍报修</text>
+
+  <rect x="842" y="178" width="250" height="78" rx="8" fill="#ffffff" stroke="#e2e9f3"/>
+  <text x="866" y="210" font-family="Microsoft YaHei, Arial" font-size="28" font-weight="800" fill="#18202f">5</text>
+  <text x="866" y="236" font-family="Microsoft YaHei, Arial" font-size="14" fill="#68758a">知识条目</text>
+  <rect x="842" y="278" width="250" height="70" rx="8" fill="#ffffff" stroke="#e2e9f3"/>
+  <text x="866" y="320" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="700" fill="#18202f">AI应用开发讲座</text>
+  <text x="866" y="342" font-family="Microsoft YaHei, Arial" font-size="13" fill="#68758a">校园活动</text>
+  <rect x="842" y="362" width="250" height="70" rx="8" fill="#ffffff" stroke="#e2e9f3"/>
+  <text x="866" y="404" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="700" fill="#18202f">学生事务中心</text>
+  <text x="866" y="426" font-family="Microsoft YaHei, Arial" font-size="13" fill="#68758a">部门信息</text>
+  <rect x="842" y="446" width="250" height="70" rx="8" fill="#ffffff" stroke="#e2e9f3"/>
+  <text x="866" y="488" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="700" fill="#18202f">宿舍网络报修</text>
+  <text x="866" y="510" font-family="Microsoft YaHei, Arial" font-size="13" fill="#68758a">后勤报修</text>
+</svg>
