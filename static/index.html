@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>校园智能问答 Agent</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="chat-panel">
+        <header class="header">
+          <div>
+            <p class="eyebrow">Campus AI Agent</p>
+            <h1>校园智能问答 Agent</h1>
+          </div>
+          <span id="status" class="status">本地检索模式</span>
+        </header>
+
+        <div id="messages" class="messages">
+          <article class="message assistant">
+            <p>你好，我可以查询校园通知、部门电话、宿舍报修、图书馆时间和选课流程。</p>
+          </article>
+        </div>
+
+        <form id="chat-form" class="composer">
+          <input
+            id="question"
+            name="question"
+            type="text"
+            autocomplete="off"
+            placeholder="例如：AI讲座怎么报名？宿舍网络坏了怎么办？"
+          />
+          <button type="submit">发送</button>
+        </form>
+      </section>
+
+      <aside class="side-panel">
+        <h2>知识库</h2>
+        <div id="knowledge" class="knowledge-list"></div>
+      </aside>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
